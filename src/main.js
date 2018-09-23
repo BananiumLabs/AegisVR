@@ -29,14 +29,32 @@ const ASPECT = WIDTH / HEIGHT;
 const NEAR = 0.1;
 const FAR = 10000;
 
+let vrMode = false;
 
-console.log('hi');
+// Start aframe vr listeners
+window.addEventListener('enter-vr', e => {
+        if (AFRAME.utils.device.checkHeadsetConnected()) { 
+                vrMode = true;
+                console.log('enter vr mode');
 
-//Switch scenes
-function nextScene(){
-        document.getElementById('scene1').setAttribute('visible', 'false');
-        document.getElementById('scene2').setAttribute('visible', 'true');
-}
+                // Fix positions
+                if(document.getElementById('tutorial-scene') !== null) {
+                        console.log('test');
+                        document.getElementById('opponent').object3D.position.set(0, 1.2, -0.4762045999540051);
+                }
+
+        }
+});
+window.addEventListener('exit-vr', e => {
+       vrMode = false;
+       console.log('exit vr mode');
+
+       // Fix positions
+        if (document.getElementById('tutorial-scene') !== null) {
+                document.getElementById('opponent').object3D.position.set(0, 0.9, -0.4762045999540051);
+        }
+
+});
 
 // Returns if value1 is within TOLERANCE of value2.
 const TOLERANCE = 50;
@@ -63,4 +81,57 @@ function positionCheck(hand) {
                 else
                         document.getElementById('right-position').setAttribute('value', positionData);
         }   
+}
+
+
+// For tutorial scene info text
+
+window.onload = () => {
+
+        let scene = document.querySelector('a-scene');
+        AFRAME.registerComponent('groin-controller', {
+                schema: { default: '' },
+                init() {
+                        this.el.addEventListener('click', () => {
+                                changeText("Self-explanatory. Painful even for girls.");
+                        });
+                }
+        });
+        AFRAME.registerComponent('eyes-controller', {
+                schema: { default: '' },
+                init() {
+                        this.el.addEventListener('click', () => {
+                                changeText("Very painful and can impair their vision,\n even if only temporarily. \nCan't hit what you can't see.");
+                        });
+                }
+        });
+        AFRAME.registerComponent('nose-controller', {
+                schema: { default: '' },
+                init() {
+                        this.el.addEventListener('click', () => {
+                                changeText("Fairly fragile when enough force is applied. \nCan lead to breathing problems and bleeding, \nwhich will cause the attacker to pay more attention to themselves \nand allow you to escape.");
+                        });
+                }
+        });
+        AFRAME.registerComponent('knees-controller', {
+                schema: { default: '' },
+                init() {
+                        this.el.addEventListener('click', () => {
+                                changeText("Joints that can fail if enough force is applied. \nIt's better to target the knees rather than the lower or upper legs, \nsince they're weak and hurting them can drastically reduce the attacker's ability to fight, \ngiving you a window of escape.");
+                        });
+                }
+        });
+        AFRAME.registerComponent('throat-controller', {
+                schema: { default: '' },
+                init() {
+                        this.el.addEventListener('click', () => {
+                                changeText("Very fragile area with the trachea exposed. \nBeing hit here is very painful, and will cause breathing problems that can allow you to escape.");
+                        });
+                }
+        });
+        
+        // document.getElementById('eyes-circle').addEventListener('mouseenter', changeText('eyes'));
+}
+function changeText(newText) {
+        document.getElementById('info-text').setAttribute('value', newText);
 }

@@ -16,29 +16,6 @@
   <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
   <script src="src/main.js"></script>
 
-  <script>
-    
-      var scene = document.querySelector('a-scene');  
-   
-     
-      
-          
-  AFRAME.registerComponent('circle-controller', {
-    schema: {default: ''},
-    init() {
-      var scene = document.querySelector('a-scene');
-
-    this.el.addEventListener('click', () => {
-          console.log("Your clicked"); 
-       
-       
-      }); 
-        
-        
-        
-    }
-  });
-  </script>  
 </head>
 
 <body>
@@ -47,7 +24,7 @@
   </noscript>
 
   <!-- START CODE -->
-    <a-scene stats leap="vr: false" id="scene" antialias="true" embedded>
+    <a-scene stats leap="vr: false" id="tutorial-scene" antialias="true" embedded>
         
         <div class="a-enter-vr"></div>
 
@@ -70,8 +47,8 @@
         <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
         <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
-        
-              <a-camera position="0 1.5 0">
+            
+              <a-camera id="camera" position="0 1.211 -0.155">
                   <a-entity 
                   raycaster="objects: .clickable"
                   cursor="fuse: true; fuseTimeout: 500"
@@ -89,19 +66,21 @@
               </a-camera>
         
          <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 0.9 -0.4762045999540051">
+          <!-- Instruction Text -->
+          <a-text id="info-text" value="Look at a critical point to learn more." position="-5.563925580479001 22.351610950003447 4.58432646555616"
+            scale="3 3 3" text=""></a-text>
           <!--Groin Circle-->
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
-          <a-text visible=false value="Hello, World!" position="-1.2263805666946812 10.800753449417154 3.466624222873338" scale="2 2 2" text=""></a-text>
+          <a-circle class="clickable" groin-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
           <!--Eyes Circle-->
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
+          <a-circle class="clickable" eyes-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
+          <a-circle class="clickable" eyes-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
           <!--Knees Circle-->
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle class="clickable" knees-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle class="clickable" knees-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
           <!--Throat Circle-->
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.43000000000000005" position="0 18.473394637184 1.5216280831896078"></a-circle>
+          <a-circle class="clickable" throat-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.43000000000000005" position="0 18.473394637184 1.5216280831896078"></a-circle>
           <!--Nose Circle-->
-          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
+          <a-circle class="clickable" nose-controller material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
         </a-entity> 
     </a-scene>
 

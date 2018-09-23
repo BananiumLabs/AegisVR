@@ -7,10 +7,9 @@
   <!-- <script src="src/require.js"></script> -->
   <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
   <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
-  <script src="src/aframe.min.js"></script>
+  <script src="src/aframe.js"></script>
   <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
   <!-- <script src="node_modules/aframe-alongpath-" -->
-  <script src="src/aframe-physics-system.min.js"></script> 
   <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
   <script src="src/main.js"></script>
   <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
@@ -43,25 +42,25 @@
         </a-assets>
 
         
-        <a-sky static-body src="#skymap" geometry="thetaStart: -80"></a-sky>
-        <a-entity static-body id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
         
         
         <a-entity position="0 1.5 0">
             <a-camera wasd-controls-enabled=false>
-                <a-entity static-body leap-hand="hand: left"></a-entity>
-                <a-entity static-body leap-hand="hand: right"></a-entity>
+                <a-entity leap-hand="hand: left"></a-entity>
+                <a-entity leap-hand="hand: right"></a-entity>
     
             </a-camera>
 
         </a-entity>
 
-        <a-entity static-body="sphereRadius:NaN" id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.567519223014038 -0.5899840957412334" animation-mixer="loop:pingpong" velocity="">
-          <a-circle static-body="sphereRadius:NaN" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02" velocity=""></a-circle>
+        <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.567519223014038 -0.5899840957412334" animation-mixer="loop:pingpong" velocity="">
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02" velocity=""></a-circle>
           </a-entity>
 
-        <a-circle static-body material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
+        <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
         </a-entity>      
         
         <a-text id="left-position" value="Left Hand Position" position="-0.40144115907266686 3.06197458956251 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
