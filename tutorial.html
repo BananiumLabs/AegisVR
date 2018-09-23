@@ -42,20 +42,31 @@
           
         </a-assets>
 
-        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-            <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
-      
-            <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
-                <a-entity leap-hand="hand: left; show-arm: false"></a-entity>
-                <a-entity leap-hand="hand: right"></a-entity>
-            </a-entity>
-
-            <a-entity id="opponent" gltf-model="#walking-opponent" scale="2 2 2" position="0 1.25 -0.5" animation-mixer="loop: pingpong;" >
-              <a-circle position="0 0 0" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
-            </a-entity>
-        <!-- <a-entity template="src: #tutorial"></a-entity> -->
         
-      
+        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+
+        <a-entity position="0 1.5 0">
+            <a-camera near="0.01" wasd-controls-enabled=false></a-camera>
+
+            <a-entity leap-hand="hand: left"></a-entity>
+            <a-entity leap-hand="hand: right"></a-entity>
+        </a-entity>
+
+        <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 1.170606053560496 -0.4762045999540051">
+          <!--Groin Circle-->
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+          <!--Eyes Circle-->
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
+          <!--Knees Circle-->
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
+          <!--Throat Circle-->
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+          <!--Nose Circle-->
+          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+        </a-entity> 
     </a-scene>
 
     

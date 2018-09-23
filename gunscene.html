@@ -42,19 +42,23 @@
           
         </a-assets>
 
-        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-            <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
-      
-            <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
-                <a-entity leap-hand="hand: left; show-arm: false"></a-entity>
-                <a-entity leap-hand="hand: right"></a-entity>
-            </a-entity>
-
-            <a-entity id="opponent" gltf-model="#walking-opponent" scale="2 2 2" position="0 1.25 -0.5" animation-mixer="loop: pingpong;" >
-              <a-circle position="0 0 0" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
-            </a-entity>
-        <!-- <a-entity template="src: #tutorial"></a-entity> -->
         
+        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+
+        <a-entity position="0 1.5 0">
+            <a-camera near="0.01" wasd-controls-enabled=false></a-camera>
+
+            <a-entity leap-hand="hand: left"></a-entity>
+            <a-entity leap-hand="hand: right"></a-entity>
+        </a-entity>
+
+        <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 1.151844379856486 -0.23776245796685752" animation-mixer="loop:pingpong">
+        <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
+        </a-entity>      
+        
+        <a-text id="left-position" value="Left Hand Position" position="-0.16134045254596668 1.6873073960450224 -0.25" scale="0.2 0.2 0.2" text=""></a-text>
+        <a-text id="right-position" value="Right Hand Position" position="-0.16134045254596668 1.6273073960450224 -0.25" scale="0.2 0.2 0.2" text=""></a-text>
       
     </a-scene>
 
