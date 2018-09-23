@@ -61,16 +61,17 @@ window.addEventListener('exit-vr', e => {
 
 // Returns if value1 is within TOLERANCE of value2.
 const TOLERANCE = 50;
-function isNear(value1, value2) {
-        return value1 < value2 + TOLERANCE && value1 > value2 - TOLERANCE;
+function isNear(value1, value2, extraTolerance) {
+        let tol = (extraTolerance) ? TOLERANCE * 2 : TOLERANCE;
+        return value1 < value2 + tol && value1 > value2 - tol;
 }
 
 // Coord1 = hand, Coord2 = target
-function isNearXyz(coord1, coord2) {
+function isNearXyz(coord1, coord2, extraTolerance) {
         let nc1 = document.getElementById('camera').object3D.localToWorld(new THREE.Vector3(coord1[0], coord1[1], coord1[2]));
         let nc2 = coord2;
         
-        return isNear(nc1.x, nc2[0]) && isNear(nc1.y, nc2[1]) && isNear(nc1.z,nc2[2]);
+        return isNear(nc1.x, nc2[0], extraTolerance) && isNear(nc1.y, nc2[1], extraTolerance) && isNear(nc1.z,nc2[2], extraTolerance);
 }
 
 
@@ -98,11 +99,16 @@ function positionCheck(hand) {
 
         // Gun triggers
         if(document.getElementById('gun-scene') !== null) {
-                correctPositionLeft = (isNearXyz(hand.palmPosition, [-121, 211, -223]) && hand.type === 'left');
-                correctPositionRight = (isNearXyz(hand.palmPosition, [-51, 143, -184]) && hand.type === 'right');
-                if(correctPositionLeft && correctPositionRight)
+                // console.log(hand.type);
+                if(hand.type === 'left')
+                         correctPositionLeft = (isNearXyz(hand.palmPosition, [-185, 350, -110], true));
+                if(hand.type === 'right')
+                        correctPositionRight = (isNearXyz(hand.palmPosition, [-185, 350, -110], true));
+                console.log(correctPositionLeft, correctPositionRight);
+                if(correctPositionRight || correctPositionLeft) {
                         console.log("emit the disarm")
                         document.getElementById('gun').emit('disarm');
+                }
 
         }
 
