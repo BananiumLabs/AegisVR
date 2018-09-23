@@ -13,7 +13,20 @@
  * limitations under the License.
  */
 
-var WebVRManager = require('./webvr-manager.js');
+// import * as WebVRManager from './webvr-manager.js';
 
-window.WebVRConfig = window.WebVRConfig || {};
-window.WebVRManager = WebVRManager;
+// window.WebVRConfig = window.WebVRConfig || {};
+// window.WebVRManager = WebVRManager;  
+// require('aframe-leap-hands').registerAll();
+
+// Set the scene size.
+const WIDTH = 400;
+const HEIGHT = 300;
+
+// Set some camera attributes.
+const VIEW_ANGLE = 45;
+const ASPECT = WIDTH / HEIGHT;
+const NEAR = 0.1;
+const FAR = 10000;
+
+// Create the hand
