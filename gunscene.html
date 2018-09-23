@@ -24,7 +24,7 @@
   </noscript>
 
   <!-- START CODE -->
-    <a-scene physics="debug: true" stats leap="vr: false" id="scene" antialias="true" embedded>
+    <a-scene stats leap="vr: false" id="scene" antialias="true" embedded>
         
         <div class="a-enter-vr"></div>
 
@@ -50,17 +50,25 @@
         
         
         <a-entity position="0 0 0">
-            <a-camera id="maincamera" wasd-controls-enabled=false>
+            <a-camera id="camera" wasd-controls-enabled=false>
                 <a-entity leap-hand="hand: left"></a-entity>
                 <a-entity leap-hand="hand: right"></a-entity>
-    
             </a-camera>
 
         </a-entity>
 
         <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.02" position="-0.067 1.184 -0.34" animation-mixer="loop:pingpong" velocity="">
+          <a-text id="info-text" value="Grab the gun and follow the gun's path to practice disarming." position="-5.563925580479001 22.351610950003447 4.58432646555616"
+            scale="3 3 3" text=""></a-text>
           <a-circle material="opacity:0.5;side:double;transparent:true;color:#EF2D5E" geometry="radius:0.02" velocity=""></a-circle>
-          <a-entity static-body id="gun" fbx-model="src:./assets/Extreme_LowPoly.fbx" position="0.314 16.871 6.57" rotation="90 -90 0" scale="0.35 0.35 0.35"></a-entity>
+          <a-entity id="gun" fbx-model="src:./assets/Extreme_LowPoly.fbx" position="0.314 16.871 6.57" rotation="90 -90 0" scale="0.35 0.35 0.35">
+            <a-animation attribute="position"
+                  begin="disarm"
+                  dur="2000"
+                  from="0.314 16.871 6.57"
+                  to="0.314 1.544 15">
+            </a-animation>
+          </a-entity>
         </a-entity>
 
 

@@ -47,7 +47,6 @@ window.addEventListener('enter-vr', e => {
 
 
         }
-        fly();
 });
 window.addEventListener('exit-vr', e => {
        vrMode = false;
@@ -87,8 +86,8 @@ function positionCheck(hand) {
                 // }
                 let positionData = document.getElementById('camera').object3D.localToWorld(new THREE.Vector3(hand.palmPosition[0],hand.palmPosition[1],hand.palmPosition[2]));
 
-                if (isNear(hand.palmPosition[0], 30) && isNear(hand.palmPosition[1], 500) && isNear(hand.palmPosition[2], -150) && hand.grabStrength > 0.8)
-                        console.log('success!');
+                // if (isNear(hand.palmPosition[0], 30) && isNear(hand.palmPosition[1], 500) && isNear(hand.palmPosition[2], -150) && hand.grabStrength > 0.8)
+                //         console.log('success!');
 
                 let formattedData = Math.round(positionData.x) + ' ' + Math.round(positionData.y) + ' ' + Math.round(positionData.z);
                 if (hand.type === 'right')
@@ -96,6 +95,16 @@ function positionCheck(hand) {
                 else
                         document.getElementById('right-position').setAttribute('value', formattedData);
         }   
+
+        // Gun triggers
+        if(document.getElementById('gun-scene') !== null) {
+                correctPositionLeft = (isNearXyz(hand.palmPosition, [-121, 211, -223]) && hand.type === 'left');
+                correctPositionRight = (isNearXyz(hand.palmPosition, [-51, 143, -184]) && hand.type === 'right');
+                if(correctPositionLeft && correctPositionRight)
+                        console.log("emit the disarm")
+                        document.getElementById('gun').emit('disarm');
+
+        }
 
         // Punching triggers
         if(document.getElementById('punching-scene') !== null) {
@@ -191,12 +200,4 @@ function changeText(newText) {
 }
 function changePosition(newX, newY) {
         document.getElementById('info-text').setAttribute('position', {x: newX, y: newY, z: 4.58});
-}
-
-function fly(){
-        var el = sceneEl.querySelector('#gun');
-        el.body.applyImpulse(
-        /* impulse */        new CANNON.Vec3(0, 1, -1),
-        /* world position */ new CANNON.Vec3().copy(el.getComputedAttribute('position'))
-        );
 }
