@@ -15,6 +15,48 @@
   <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
   <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
   <script src="src/main.js"></script>
+
+  <script>
+    
+      var prevData = "clip: idle; crossFadeDuration: .3";;
+      var listenerAdded = false;
+      var scene = document.querySelector('a-scene');  
+      var playOnce = false; 
+   
+     
+      
+          
+  AFRAME.registerComponent('circle-controller', {
+    schema: {default: ''},
+    init() {
+      var scene = document.querySelector('a-scene');
+
+    this.el.addEventListener('click', () => {
+          
+        if (this.el != jumpBut){  
+          bot.setAttribute("animation-mixer",this.data); 
+           scene.removeEventListener('animation-loop', jumpTrans);
+           prevData = this.data;
+           
+       }
+          
+       if (this.el == jumpBut) {
+          
+          bot.setAttribute("animation-mixer",this.data); 
+          var jumpTrans = function () {scene.removeEventListener('animation-loop',jumpTrans); bot.setAttribute("animation-mixer",prevData);console.log("scene ="+scene); console.log("fire")};  
+          console.log("prev data from jump button = "+prevData); 
+         setTimeout (function(){scene.addEventListener('animation-loop',jumpTrans);},500);     
+       
+       }
+          
+       
+      }); 
+        
+        
+        
+    }
+  });
+  </script>  
 </head>
 
 <body>
@@ -46,13 +88,23 @@
         <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
         <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
-        <a-entity position="0 1.5 0">
-            <a-camera near="0.01" wasd-controls-enabled=false></a-camera>
-
-            <a-entity leap-hand="hand: left"></a-entity>
-            <a-entity leap-hand="hand: right"></a-entity>
-        </a-entity>
-
+        
+              <a-camera position="0 1.5 0">
+                  <a-entity 
+                  raycaster="objects: .clickable"
+                  cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: green; shader: flat">
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                              fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                              fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+                </a-entity>
+              </a-camera>
+              <a-entity leap-hand="hand: left"></a-entity>
+              <a-entity leap-hand="hand: right"></a-entity>
+        
         <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 1.170606053560496 -0.4762045999540051">
           <!--Groin Circle-->
           <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
@@ -67,8 +119,6 @@
           <!--Nose Circle-->
           <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
         </a-entity> 
-
-        <a-entity laser-controls line="color: red; opacity: 0.75"></a-entity>
     </a-scene>
 
     

@@ -10,11 +10,11 @@
   <script src="src/aframe.min.js"></script>
   <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
   <!-- <script src="node_modules/aframe-alongpath-" -->
-  <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
+  <script src="src/aframe-physics-system.min.js"></script> 
   <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
+  <script src="src/main.js"></script>
   <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
   <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
-  <script src="src/main.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
   </noscript>
 
   <!-- START CODE -->
-    <a-scene stats leap="vr: false" id="scene" antialias="true" embedded>
+    <a-scene physics="debug: true" stats leap="vr: false" id="scene" antialias="true" embedded>
         
         <div class="a-enter-vr"></div>
 
@@ -43,18 +43,20 @@
         </a-assets>
 
         
-        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+        <a-sky static-body src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity static-body id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
         <a-entity position="0 1.5 0">
             <a-camera near="0.01" wasd-controls-enabled=false></a-camera>
 
-            <a-entity leap-hand="hand: left"></a-entity>
-            <a-entity leap-hand="hand: right"></a-entity>
+            <a-entity static-body leap-hand="hand: left"></a-entity>
+            <a-entity static-body leap-hand="hand: right"></a-entity>
         </a-entity>
 
-        <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 1.151844379856486 -0.23776245796685752" animation-mixer="loop:pingpong">
-        <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
+        <a-box static-body position="0 1.8 -0.25" width="0.1" height="0.1" depth="0.1" ></a-box>
+
+        <a-entity static-body id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 1.151844379856486 -0.23776245796685752" animation-mixer="loop:pingpong">
+        <a-circle static-body material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
         </a-entity>      
         
         <a-text id="left-position" value="Left Hand Position" position="-0.16134045254596668 1.6873073960450224 -0.25" scale="0.2 0.2 0.2" text=""></a-text>

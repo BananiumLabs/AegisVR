@@ -1,65 +1,27 @@
-<html>
-<!-- This Demo overlays a rigged hand on top of the existing page.  Requires a WebGL-capable browser. -->
+<!doctype html>
+<html class="no-js" lang="">
 
 <head>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
-  <script src="src/inflate.min.js"></script>
-  <!-- <script src="src/require.js"></script> -->
-  <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
-  <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
-  <script src="src/aframe.min.js"></script>
-  <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
-  <!-- <script src="node_modules/aframe-alongpath-" -->
-  <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
-  <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
-  <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
-  <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
-  <script src="src/main.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>AegisVR</title>
+  <meta name="description" content="Self defense education in VR!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
 
-  <!-- START CODE -->
-    <a-scene stats leap="vr: false" id="scene" antialias="true" embedded>
-        
-        <div class="a-enter-vr"></div>
+  <!-- Add your site or application content here -->
+  <p>Hello world! This is HTML5 Boilerplate.</p>
 
-      
-        <a-assets>
-          <img id="floor" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossOrigin="anonymous">
-          <img id="skymap" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossOrigin="anonymous">
-
-          <a-asset-item id="left-hand" src="./assets/test2.gltf"></a-asset-item>
-          <a-asset-item id="opponent-man" src="./assets/opponentMan.gltf"></a-asset-item>
-          <a-asset-item id="walking-opponent" src="./assets/walking.gltf"></a-asset-item>
-          <!-- <audio id="song" src="./songs/ocean.mp3" autoPlay loop /> -->
-          <!-- <a-asset-item id="cloud1" src="./OBJ Models/Cloud_1.obj"></a-asset-item>
-          
-          <a-asset-item id="cloud1-mtl" src="./OBJ Models/Cloud_1.mtl"></a-asset-item> -->
-          
-        </a-assets>
-
-        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-            <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
-      
-            <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
-                <a-entity leap-hand="hand: left; show-arm: false"></a-entity>
-                <a-entity leap-hand="hand: right"></a-entity>
-            </a-entity>
-
-            <a-entity id="opponent" gltf-model="#walking-opponent" scale="2 2 2" position="0 1.25 -0.5" animation-mixer="loop: pingpong;" >
-              <a-circle position="0 0 0" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
-            </a-entity>
-        <!-- <a-entity template="src: #tutorial"></a-entity> -->
-        
-      
-    </a-scene>
-
-    
-
-    </body>
+</body>
 
 </html>
