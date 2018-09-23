@@ -1,22 +1,41 @@
 {
-  "name": "aegisvr",
-  "version": "1.0.0",
-  "description": "BaseHacks 3.0 - LeapMotion with WebVR",
-  "main": "index.js",
+  "name": "webvr-boilerplate",
+  "version": "0.4.3",
+  "description": "A starting point for web-based VR experiences that work in both Cardboard and Oculus.",
+  "main": "src/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.5",
+    "leapjs": "^0.6.4",
+    "leapjs-plugins": "^0.1.12",
+    "three": "^0.76.1",
+    "webvr-polyfill": "^0.9.5"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "derequire": "latest",
+    "watchify": "latest"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "browserify src/main.js | derequire > build/webvr-manager.js",
+    "watch": "watchify src/main.js -v -d -o 'derequire > build/webvr-manager.js'",
+    "test": "browserify test/device-info-test.js  > build/device-info-test.js",
+    "copy-polyfill": "cp ../webvr-polyfill/build/webvr-polyfill.js node_modules/webvr-polyfill/build/webvr-polyfill.js",
+    "copy-three": "./scripts/copy-three.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bananiumlabs/AegisVR.git"
+    "url": "git+https://github.com/borismus/webvr-boilerplate.git"
   },
-  "author": "Bananium Labs",
-  "license": "MIT",
+  "keywords": [
+    "vr"
+  ],
+  "author": "Boris Smus",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/bananiumlabs/AegisVR/issues"
+    "url": "https://github.com/borismus/webvr-boilerplate/issues"
   },
-  "homepage": "https://github.com/bananiumlabs/AegisVR#readme",
-  "dependencies": {
-    "leapjs": "^0.6.4"
-  }
+  "homepage": "https://github.com/borismus/webvr-boilerplate#readme"
 }
