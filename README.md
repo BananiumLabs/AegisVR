@@ -1,70 +1,21 @@
-# WebVR Boilerplate
+# AegisVR
+An immersive VR experience that takes self-defense education to the next level!
 
-A [THREE.js][three]-based starting point for VR experiences that work well in
-both Google Cardboard and other VR headsets. Also provides a fallback for
-experiencing the same content without requiring a VR device.
+Built for BaseHacks 3.0, on 22-23 September 2018.
 
-This project relies heavily on the [webvr-polyfill][polyfill] to provide VR
-support if the [WebVR API](spec) is not implemented.
+https://aegis.bananiumlabs.com
 
-[three]: http://threejs.org/
-[polyfill]: https://github.com/borismus/webvr-polyfill
+## General Disclaimer
+We are not experts in self-defense and don't claim to be. This is simply a student project aiming to spread awareness about personal safety in the event of an assault. However, there are some things here that everyone should consider.
 
-## Projects that use the webvr-polyfill or webvr-boilerplate
+The primary focus of self-defense is not to win the fight, but to hurt your opponent enough for you to escape. If you're faced with a possible dangerous situation, your first instinct should be de escalation and you should attempt to remove yourself from the area, while remaining alert to threats. If you are faced with an assault and have no escape, make as much noise as you can to attract attention and use principles taught by experienced self-defense instructors.
 
-Assorted platforms:
+## Built with
+ - [AFrame](https://aframe.io)
+ - [LeapJS with Leap Motion Controller](https://github.com/leapmotion/leapjs)
 
-- [A-Frame](https://github.com/aframevr/aframe/) - Building blocks for the
-virtual reality web
-- [Archilogic](http://spaces.archilogic.com/3d/template/new?mode=edit&view-menu=none) - Floor plans into 3D virtual tours
-- [Vizor](http://vizor.io/) - Create and share VR in your browser
-
-Assorted real-world examples:
-
-- [Breakthrough](http://breakthrough.nationalgeographic.com/) - Cutting-edge science that will change our lives in the very near future (by National Geographic)
-- [Chinese New Year](https://chinesenewyear.withgoogle.com/) - Create a virtual lantern and share your wishes (by Google)
-- [Discovering Gale Crater](http://graphics.latimes.com/mars-gale-crater-vr/) - A virtual reality audio tour of the Gale Crater (by LA Times)
-- [Sechelt](https://mozvr.github.io/sechelt/) - A visualization of an inlet near the town of Sechelt, BC (by Mozilla)
-
-Assorted samples:
-
-- [WebVR 1.0 Samples](https://toji.github.io/webvr-samples/) - Simple example applications to demonstrate various aspects of the WebVR API
-
-
-## Features
-
-As of WebVR 1.0, this project relies on the polyfill for even more. Core
-features like [lens distortion][distortion] and device detection have moved into the polyfill.
-This project now acts as a getting started example, and provides a reasonable
-user experience for getting in and out of Virtual Reality and Magic Window
-modes.
-
-As a convenience, the WebVRManager emits certain `modechange` events, which can
-be subscribed using `manager.on('modechange', callback)`.
-
-
-## Getting started
-
-The easiest way to start is to fork this repository or copy its contents into a
-new directory.
-
-The boilerplate is also available via npm. Easy install:
-
-    npm install webvr-boilerplate
-
-
-## Thanks
-
-- [Brandon Jones][bj] and [Vladimir Vukicevic][vv] for their work on the [WebVR
-  spec][spec].
-- [Ricardo Cabello][doob] for THREE.js.
-- [Diego Marcos][dm] for VREffect and VRControls.
-- [Dmitry Kovalev][dk] for help with [lens distortion correction][distortion].
-
-[dk]: https://plus.google.com/+DmitryKovalev1
-[distortion]: https://github.com/borismus/webvr-polyfill/blob/master/src/distortion/distortion.js
-[bj]: https://twitter.com/tojiro
-[vv]: https://twitter.com/vvuk
-[spec]: https://mozvr.github.io/webvr-spec/
-[dm]: https://twitter.com/dmarcos
-[doob]: https://twitter.com/mrdoob
+## Built by Bananium Labs Team A
+ - [Ben Cuan](https://github.com/dbqeo)
+ - [Vikram Peddinti](https://github.com/darkflamex1)
+ - [Kevin Chu](https://github.com/KindredKinesis)
+ - [Alexey Kolechkin](https://github.com/kuxxe)

@@ -56,15 +56,16 @@
             </a-camera>
 
         </a-entity>
-        
-        <a-box static-body position="0 1.8 -0.25" width="0.1" height="0.1" depth="0.1" ></a-box>
 
-        <a-entity static-body="sphereRadius:NaN" id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.618 -1.524" animation-mixer="loop:pingpong" velocity="">
+        <a-entity static-body="sphereRadius:NaN" id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.567519223014038 -0.5899840957412334" animation-mixer="loop:pingpong" velocity="">
+          <a-circle static-body="sphereRadius:NaN" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02" velocity=""></a-circle>
+          </a-entity>
+
         <a-circle static-body material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
         </a-entity>      
         
-        <a-text id="left-position" value="Left Hand Position" position="0 2.618 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
-        <a-text id="right-position" value="Right Hand Position" position="0 2.618 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
+        <a-text id="left-position" value="Left Hand Position" position="-0.40144115907266686 3.06197458956251 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
+        <a-text id="right-position" value="Right Hand Position" position="0 3.0603799987751894 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
       
     </a-scene>
 
