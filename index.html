@@ -7,10 +7,12 @@
   <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
   <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
   <script src="src/aframe.min.js"></script>
-  <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script>
   <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
   <!-- <script src="node_modules/aframe-alongpath-" -->
-  <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
+    <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
+    <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
+    <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
+
   <script src="src/main.js"></script>
 </head>
 
@@ -20,9 +22,8 @@
   </noscript>
 
   <!-- START CODE -->
-    <a-scene leap="vr: false" stats id="scene" antialias="true" embedded>
-        <a-entity leap-hand="hand: left" ></a-entity>
-        <a-entity leap-hand="hand: right"></a-entity>
+    <a-scene stats leap="vr: false" id="scene" antialias="true" embedded>
+        
       <div class="a-enter-vr"></div>
 
       
@@ -49,7 +50,8 @@
         <!-- Hand -->
         <!-- <a-entity gltf-model="#left-hand" scale="0.1 0.1 0.1"></a-entity> -->
         <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
-          
+            <a-entity leap-hand="hand: left;"></a-entity>
+            <a-entity leap-hand="hand: right"></a-entity>
         </a-entity>
         <!-- <a-entity gltf-model="#opponent-man" scale="0.02 0.02 0.02" position="0 1.25 -0.5"></a-entity> -->
         <a-entity id="opponent" gltf-model="#walking-opponent" scale="2 2 2" position="0 1.25 -0.5" animation-mixer="loop: pingpong;" >
