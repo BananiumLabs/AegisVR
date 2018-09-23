@@ -29,6 +29,12 @@ p {
     font-size: 20px;
 }
 
+.center-align-btn {
+    margin: auto;
+    display: block;
+    width: 20vw;
+}
+
 
 /*
  * Remove text-shadow in selection highlight:

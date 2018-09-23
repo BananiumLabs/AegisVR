@@ -83,11 +83,12 @@
                   <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
                               fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
                 </a-entity>
+
+                <a-entity leap-hand="hand: left"></a-entity>
+                <a-entity leap-hand="hand: right"></a-entity>  
               </a-camera>
-              <a-entity leap-hand="hand: left"></a-entity>
-              <a-entity leap-hand="hand: right"></a-entity>
         
-        <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 1.170606053560496 -0.4762045999540051">
+         <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 0.9 -0.4762045999540051">
           <!--Groin Circle-->
           <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
           <a-text visible=false value="Hello, World!" position="-1.2263805666946812 10.800753449417154 3.466624222873338" scale="2 2 2" text=""></a-text>

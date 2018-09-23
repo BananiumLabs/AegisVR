@@ -80222,7 +80222,7 @@ function checkHasPositionalTracking () {
   if (isMobile() || isGearVR()) { return false; }
   return false; //vrDisplay && vrDisplay.capabilities.hasPosition;
 }
-module.exports.checkHasPositionalTracking = checkHasPositionalTracking;
+module.exports.checkHasPositionalTracking = false;
 
 /**
  * Checks if browser is mobile.
