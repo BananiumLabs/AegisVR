@@ -29,4 +29,8 @@ const ASPECT = WIDTH / HEIGHT;
 const NEAR = 0.1;
 const FAR = 10000;
 
-// Create the hand
+//Switch scenes
+function nextScene(){
+        document.getElementById('scene1').setAttribute('visible', 'false');
+        document.getElementById('scene2').setAttribute('visible', 'true');
+}

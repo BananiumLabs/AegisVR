@@ -8,6 +8,9 @@
   <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
   <script src="src/aframe.min.js"></script>
   <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script>
+  <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+  <!-- <script src="node_modules/aframe-alongpath-" -->
+  <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
   <script src="src/main.js"></script>
 </head>
 
@@ -17,38 +20,45 @@
   </noscript>
 
   <!-- START CODE -->
-    <a-scene stats id="scene" antialias="true" embedded>
-      <div class="a-enter-vr"></div>
-      <a-assets>
-        <img id="floor" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossOrigin="anonymous">
-        <img id="skymap" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossOrigin="anonymous">
-
-        <a-asset-item id="left-hand" src="./assets/test2.gltf"></a-asset-item>
-        <a-asset-item id="opponent-man" src="./assets/opponentMan.gltf"></a-asset-item>
-        <!-- <audio id="song" src="./songs/ocean.mp3" autoPlay loop /> -->
-        <!-- <a-asset-item id="cloud1" src="./OBJ Models/Cloud_1.obj"></a-asset-item>
-        
-        <a-asset-item id="cloud1-mtl" src="./OBJ Models/Cloud_1.mtl"></a-asset-item> -->
-      </a-assets>
-
-      <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-      <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
- 
-      <!-- <a-entity position="0 0 0">
-        <a-camera wasd-controls-enabled="false" id="camera" universal-controls="movementEnabled: false">
-        </a-camera>
-      </a-entity> -->
-
-      <!-- Hand -->
-      <!-- <a-entity gltf-model="#left-hand" scale="0.1 0.1 0.1"></a-entity> -->
-      <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
-        <a-entity gltf-model="#left-hand" scale="0.1 0.1 0.1" leap-hand="hand: left" ></a-entity>
+    <a-scene leap="vr: false" stats id="scene" antialias="true" embedded>
+        <a-entity leap-hand="hand: left" ></a-entity>
         <a-entity leap-hand="hand: right"></a-entity>
-      </a-entity>
-      <a-entity gltf-model="#opponent-man" scale="0.02 0.02 0.02" position="0 1.25 -0.5"></a-entity>
+      <div class="a-enter-vr"></div>
 
-      <a-circle position="0 1.25 -0.5" material="side: double; color: #EF2D5E; transparent: true; opacity: 0.5" geometry="primitive:circle;radius:0.01"></a-circle>
+      
+        <a-assets>
+          <img id="floor" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossOrigin="anonymous">
+          <img id="skymap" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossOrigin="anonymous">
+
+          <a-asset-item id="left-hand" src="./assets/test2.gltf"></a-asset-item>
+          <a-asset-item id="opponent-man" src="./assets/opponentMan.gltf"></a-asset-item>
+          <a-asset-item id="walking-opponent" src="./assets/walking.gltf"></a-asset-item>
+          <!-- <audio id="song" src="./songs/ocean.mp3" autoPlay loop /> -->
+          <!-- <a-asset-item id="cloud1" src="./OBJ Models/Cloud_1.obj"></a-asset-item>
+          
+          <a-asset-item id="cloud1-mtl" src="./OBJ Models/Cloud_1.mtl"></a-asset-item> -->
+        </a-assets>
+        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+  
+        <!-- <a-entity position="0 0 0">
+          <a-camera wasd-controls-enabled="false" id="camera" universal-controls="movementEnabled: false">
+          </a-camera>
+        </a-entity> -->
+
+        <!-- Hand -->
+        <!-- <a-entity gltf-model="#left-hand" scale="0.1 0.1 0.1"></a-entity> -->
+        <a-entity camera="near: 0.01" look-controls position="0 1.5 0">
+          
+        </a-entity>
+        <!-- <a-entity gltf-model="#opponent-man" scale="0.02 0.02 0.02" position="0 1.25 -0.5"></a-entity> -->
+        <a-entity id="opponent" gltf-model="#walking-opponent" scale="2 2 2" position="0 1.25 -0.5" animation-mixer="loop: pingpong;" >
+          <a-circle position="0 0 0" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
+        </a-entity>
+      
     </a-scene>
+
+    
 
     </body>
 

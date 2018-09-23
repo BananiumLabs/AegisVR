@@ -7,6 +7,7 @@
     "test": "test"
   },
   "dependencies": {
+    "aframe-extras": "^4.1.3",
     "aframe-leap-hands": "^0.7.2",
     "es6-promise": "^4.2.5",
     "leapjs": "^0.6.4",
