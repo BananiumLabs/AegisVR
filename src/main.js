@@ -38,19 +38,23 @@ window.addEventListener('enter-vr', e => {
                 console.log('enter vr mode');
 
                 // Fix positions
-                if(document.getElementById('tutorial-scene') !== null) {
+                if (document.getElementById('tutorial-scene') !== null && document.getElementById('punching-scene') !== null) {
                         console.log('test');
                         document.getElementById('opponent').object3D.position.set(0, 1.2, -0.4762045999540051);
                 }
+        
+
+
 
         }
+        fly();
 });
 window.addEventListener('exit-vr', e => {
        vrMode = false;
        console.log('exit vr mode');
 
        // Fix positions
-        if (document.getElementById('tutorial-scene') !== null) {
+        if (document.getElementById('tutorial-scene') !== null && document.getElementById('punching-scene') !== null) {
                 document.getElementById('opponent').object3D.position.set(0, 0.9, -0.4762045999540051);
         }
 
@@ -62,6 +66,14 @@ function isNear(value1, value2) {
         return value1 < value2 + TOLERANCE && value1 > value2 - TOLERANCE;
 }
 
+// Coord1 = hand, Coord2 = target
+function isNearXyz(coord1, coord2) {
+        let nc1 = document.getElementById('camera').object3D.localToWorld(new THREE.Vector3(coord1[0], coord1[1], coord1[2]));
+        let nc2 = coord2;
+        
+        return isNear(nc1.x, nc2[0]) && isNear(nc1.y, nc2[1]) && isNear(nc1.z,nc2[2]);
+}
+
 
 let correctPositionLeft = false, correctPositionRight = false;
 
@@ -69,18 +81,55 @@ function positionCheck(hand) {
         // NOTE: Hands are mirrored! Left = right and right = left
         if (document.getElementById('left-position') !== null) {
                 
-                let positionData = '';
-                for (let val of hand.palmPosition) {
-                        positionData += Math.round(val) + ' ';
-                }
+                // let positionData = '';
+                // for (let val of hand.palmPosition) {
+                //         positionData += Math.round(val) + ' ';
+                // }
+                let positionData = document.getElementById('camera').object3D.localToWorld(new THREE.Vector3(hand.palmPosition[0],hand.palmPosition[1],hand.palmPosition[2]));
 
                 if (isNear(hand.palmPosition[0], 30) && isNear(hand.palmPosition[1], 500) && isNear(hand.palmPosition[2], -150) && hand.grabStrength > 0.8)
                         console.log('success!');
+
+                let formattedData = Math.round(positionData.x) + ' ' + Math.round(positionData.y) + ' ' + Math.round(positionData.z);
                 if (hand.type === 'right')
-                        document.getElementById('left-position').setAttribute('value', positionData);
+                        document.getElementById('left-position').setAttribute('value', formattedData);
                 else
-                        document.getElementById('right-position').setAttribute('value', positionData);
+                        document.getElementById('right-position').setAttribute('value', formattedData);
         }   
+
+        // Punching triggers
+        if(document.getElementById('punching-scene') !== null) {
+                // Left Knee
+                console.log('hi');
+                if(isNearXyz(hand.palmPosition, [-45, 168, -392]))
+                    document.getElementById('left-knee').setAttribute('visible', false);   
+                if (isNearXyz(hand.palmPosition, [62, 152, -378]))
+                    document.getElementById('right-knee').setAttribute('visible', false);   
+                if(isNearXyz(hand.palmPosition, [-19, 483, -53]))
+                    document.getElementById('left-eye').setAttribute('visible', false);   
+                if(isNearXyz(hand.palmPosition, [30, 500, -50]))
+                    document.getElementById('right-eye').setAttribute('visible', false);   
+                if(isNearXyz(hand.palmPosition, [2, 498, -84]))
+                    document.getElementById('throat').setAttribute('visible', false);   
+                if(isNearXyz(hand.palmPosition, [-27, 548, -84]))
+                    document.getElementById('nose').setAttribute('visible', false);   
+                if(isNearXyz(hand.palmPosition, [3, 268, -200]))
+                    document.getElementById('groin').setAttribute('visible', false);   
+                
+
+                if(
+                        !document.getElementById('left-knee').getAttribute('visible') &&
+                        !document.getElementById('right-knee').getAttribute('visible') &&
+                        !document.getElementById('left-eye').getAttribute('visible') &&
+                        !document.getElementById('right-eye').getAttribute('visible') &&
+                        !document.getElementById('throat').getAttribute('visible') &&
+                        !document.getElementById('nose').getAttribute('visible') &&
+                        !document.getElementById('groin').getAttribute('visible')
+                )
+                        document.getElementById('info-text').setAttribute('value', 'Great job!');
+                        
+                
+        }
 }
 
 
@@ -93,7 +142,8 @@ window.onload = () => {
                 schema: { default: '' },
                 init() {
                         this.el.addEventListener('click', () => {
-                                changeText("Self-explanatory. Painful even for girls.");
+                                changeText("-Groin-\nSelf-explanatory. Painful when struck, even for girls.");
+                                changePosition(-17.268, 11.123);
                         });
                 }
         });
@@ -101,7 +151,8 @@ window.onload = () => {
                 schema: { default: '' },
                 init() {
                         this.el.addEventListener('click', () => {
-                                changeText("Very painful and can impair their vision,\n even if only temporarily. \nCan't hit what you can't see.");
+                                changeText("-Eyes-\nVery painful and can impair their vision,\n even if only temporarily. \nCan't hit what you can't see.");
+                                changePosition(-5.563925580479001, 22.351610950003447);
                         });
                 }
         });
@@ -109,7 +160,8 @@ window.onload = () => {
                 schema: { default: '' },
                 init() {
                         this.el.addEventListener('click', () => {
-                                changeText("Fairly fragile when enough force is applied. \nCan lead to breathing problems and bleeding, \nwhich will cause the attacker to pay more attention to themselves \nand allow you to escape.");
+                                changeText("-Nose-\nFairly fragile when enough force is applied. \nCan lead to breathing problems and bleeding, \nwhich will cause the attacker to pay more attention to themselves \nand allow you to escape.");
+                                changePosition(5.010, 19.978);
                         });
                 }
         });
@@ -117,7 +169,8 @@ window.onload = () => {
                 schema: { default: '' },
                 init() {
                         this.el.addEventListener('click', () => {
-                                changeText("Joints that can fail if enough force is applied. \nIt's better to target the knees rather than the lower or upper legs, \nsince they're weak and hurting them can drastically reduce the attacker's ability to fight, \ngiving you a window of escape.");
+                                changeText("-Knees-\nJoints that can fail if enough force is applied. \nIt's better to target the knees rather than the lower or upper legs, \nsince they're weak and hurting them can drastically reduce the attacker's ability to fight, \ngiving you a window of escape.");
+                                changePosition(4.344, 6.784);
                         });
                 }
         });
@@ -125,7 +178,8 @@ window.onload = () => {
                 schema: { default: '' },
                 init() {
                         this.el.addEventListener('click', () => {
-                                changeText("Very fragile area with the trachea exposed. \nBeing hit here is very painful, and will cause breathing problems that can allow you to escape.");
+                                changeText("-Throat-\nVery fragile area with the trachea exposed. \nBeing hit here is very painful, and will cause breathing problems that can allow you to escape.");
+                                changePosition(-16.334, 19.978);
                         });
                 }
         });
@@ -134,4 +188,15 @@ window.onload = () => {
 }
 function changeText(newText) {
         document.getElementById('info-text').setAttribute('value', newText);
+}
+function changePosition(newX, newY) {
+        document.getElementById('info-text').setAttribute('position', {x: newX, y: newY, z: 4.58});
+}
+
+function fly(){
+        var el = sceneEl.querySelector('#gun');
+        el.body.applyImpulse(
+        /* impulse */        new CANNON.Vec3(0, 1, -1),
+        /* world position */ new CANNON.Vec3().copy(el.getComputedAttribute('position'))
+        );
 }

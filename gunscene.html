@@ -2,17 +2,19 @@
 <!-- This Demo overlays a rigged hand on top of the existing page.  Requires a WebGL-capable browser. -->
 
 <head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
   <script src="src/inflate.min.js"></script>
   <!-- <script src="src/require.js"></script> -->
   <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
   <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
-  <script src="src/aframe.js"></script>
+  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
   <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
   <!-- <script src="node_modules/aframe-alongpath-" -->
   <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
   <script src="src/main.js"></script>
   <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.2.0/dist/aframe-physics-system.min.js"></script>
   <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
 </head>
 
@@ -43,12 +45,12 @@
 
         
         <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
-        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+        <a-entity static-body id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
         
         
-        <a-entity position="0 1.5 0">
-            <a-camera wasd-controls-enabled=false>
+        <a-entity position="0 0 0">
+            <a-camera id="maincamera" wasd-controls-enabled=false>
                 <a-entity leap-hand="hand: left"></a-entity>
                 <a-entity leap-hand="hand: right"></a-entity>
     
@@ -56,12 +58,14 @@
 
         </a-entity>
 
-        <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.567519223014038 -0.5899840957412334" animation-mixer="loop:pingpong" velocity="">
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02" velocity=""></a-circle>
-          </a-entity>
+        <a-entity id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.02" position="-0.067 1.184 -0.34" animation-mixer="loop:pingpong" velocity="">
+          <a-circle material="opacity:0.5;side:double;transparent:true;color:#EF2D5E" geometry="radius:0.02" velocity=""></a-circle>
+          <a-entity static-body id="gun" fbx-model="src:./assets/Extreme_LowPoly.fbx" position="0.314 16.871 6.57" rotation="90 -90 0" scale="0.35 0.35 0.35"></a-entity>
+        </a-entity>
+
+
 
         <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
-        </a-entity>      
         
         <a-text id="left-position" value="Left Hand Position" position="-0.40144115907266686 3.06197458956251 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
         <a-text id="right-position" value="Right Hand Position" position="0 3.0603799987751894 -1.524" scale="0.2 0.2 0.2" text=""></a-text>

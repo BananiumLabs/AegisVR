@@ -1,0 +1,96 @@
+<html>
+<!-- This Demo overlays a rigged hand on top of the existing page.  Requires a WebGL-capable browser. -->
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
+  <script src="src/inflate.min.js"></script>
+  <!-- <script src="src/require.js"></script> -->
+  <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
+  <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
+  <script src="src/aframe.js"></script>
+  <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+  <!-- <script src="node_modules/aframe-alongpath-" -->
+  <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
+  <!-- <script src="node_modules/aframe-leap-hands/dist/aframe-leap-hands.min.js"></script> -->
+  <script src="src/leap.rigged-hand-0.1.7.min.js"></script>
+  <script src="node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
+  <script src="src/main.js"></script>
+
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
+  <!-- START CODE -->
+    <a-scene stats leap="vr: false" id="punching-scene" antialias="true" embedded>
+        
+        <div class="a-enter-vr"></div>
+
+      
+        <a-assets>
+          <img id="floor" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossOrigin="anonymous">
+          <img id="skymap" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossOrigin="anonymous">
+
+          <a-asset-item id="left-hand" src="./assets/test2.gltf"></a-asset-item>
+          <a-asset-item id="opponent-man" src="./assets/opponentMan.gltf"></a-asset-item>
+          <a-asset-item id="walking-opponent" src="./assets/walking.gltf"></a-asset-item>
+          <!-- <audio id="song" src="./songs/ocean.mp3" autoPlay loop /> -->
+          <!-- <a-asset-item id="cloud1" src="./OBJ Models/Cloud_1.obj"></a-asset-item>
+          
+          <a-asset-item id="cloud1-mtl" src="./OBJ Models/Cloud_1.mtl"></a-asset-item> -->
+          
+        </a-assets>
+
+        
+        <a-sky src="#skymap" geometry="thetaStart: -80"></a-sky>
+        <a-entity id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
+
+            
+              <a-camera id="camera" position="0 1.211 -0.2">
+                  <!-- <a-entity 
+                  raycaster="objects: .clickable"
+                  cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -0.3"
+                  geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.010"
+                  material="color: green; shader: flat">
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                              fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                              fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+                </a-entity> -->
+
+                <a-entity id="lefthand" leap-hand="hand: left"></a-entity>
+                <a-entity id="righthand" leap-hand="hand: right"></a-entity>  
+              </a-camera>
+        
+         <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 0.9 -0.4762045999540051">
+          <!-- Instruction Text -->
+          <a-text id="info-text" value="Look at a critical point to learn more." position="-5.563925580479001 22.351610950003447 4.58432646555616"
+            scale="3 3 3" text=""></a-text>
+          <!--Groin Circle-->
+          <a-circle id="groin" material="side:double;color:#2196f3;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+          <!--Eyes Circle-->
+          <a-circle id="right-eye" material="side:double;color:#43a047;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
+          <a-circle id="left-eye" material="side:double;color:#43a047;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
+          <!--Knees Circle-->
+          <a-circle id="right-knee" material="side:double;color:#ab47bc;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle id="left-knee" material="side:double;color:#ab47bc;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
+          <!--Throat Circle-->
+          <a-circle id="throat" material="side:double;color:#fb8c00;transparent:true;opacity:0.5" geometry="radius:0.43000000000000005" position="0 18.473394637184 1.5216280831896078"></a-circle>
+          <!--Nose Circle-->
+          <a-circle id="nose" material="side:double;color:#f44336;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
+        </a-entity> 
+
+        <a-text id="left-position" value="Left Hand Position" position="-0.60144115907266686 1.06197458956251 -1.524" scale="0.2 0.2 0.2"
+          text=""></a-text>
+        <a-text id="right-position" value="Right Hand Position" position="0.5 1.0603799987751894 -1.524" scale="0.2 0.2 0.2" text=""></a-text>
+
+    </a-scene>
+
+    
+
+    </body>
+
+</html>
