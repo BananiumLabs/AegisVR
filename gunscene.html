@@ -46,16 +46,20 @@
         <a-sky static-body src="#skymap" geometry="thetaStart: -80"></a-sky>
         <a-entity static-body id="ground" geometry="primitive: circle; radius: 30.5" rotation="-90 0 0" material="src: #floor"></a-entity>
 
+        
+        
         <a-entity position="0 1.5 0">
-            <a-camera near="0.01" wasd-controls-enabled=false></a-camera>
+            <a-camera wasd-controls-enabled=false>
+                <a-entity static-body leap-hand="hand: left"></a-entity>
+                <a-entity static-body leap-hand="hand: right"></a-entity>
+    
+            </a-camera>
 
-            <a-entity static-body leap-hand="hand: left"></a-entity>
-            <a-entity static-body leap-hand="hand: right"></a-entity>
         </a-entity>
-
+        
         <a-box static-body position="0 1.8 -0.25" width="0.1" height="0.1" depth="0.1" ></a-box>
 
-        <a-entity static-body id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 1.151844379856486 -0.23776245796685752" animation-mixer="loop:pingpong">
+        <a-entity static-body="sphereRadius:NaN" id="opponent" fbx-model="src:./assets/pistol-waiting.fbx" scale="0.02 0.02 0.01" position="0 2.618 -1.524" animation-mixer="loop:pingpong" velocity="">
         <a-circle static-body material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.02"></a-circle>
         </a-entity>      
         

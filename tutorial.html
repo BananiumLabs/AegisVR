@@ -7,7 +7,7 @@
   <!-- <script src="src/require.js"></script> -->
   <script src="node_modules/leapjs/leap-0.6.4.min.js"></script>
   <script src="node_modules/leapjs-plugins/main/leap-plugins-0.1.12.min.js"></script>
-  <script src="src/aframe.min.js"></script>
+  <script src="src/aframe.js"></script>
   <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
   <!-- <script src="node_modules/aframe-alongpath-" -->
   <script src="node_modules/aframe-physics-system/dist/aframe-physics-system.min.js"></script> 
@@ -18,10 +18,7 @@
 
   <script>
     
-      var prevData = "clip: idle; crossFadeDuration: .3";;
-      var listenerAdded = false;
       var scene = document.querySelector('a-scene');  
-      var playOnce = false; 
    
      
       
@@ -32,23 +29,8 @@
       var scene = document.querySelector('a-scene');
 
     this.el.addEventListener('click', () => {
-          
-        if (this.el != jumpBut){  
-          bot.setAttribute("animation-mixer",this.data); 
-           scene.removeEventListener('animation-loop', jumpTrans);
-           prevData = this.data;
-           
-       }
-          
-       if (this.el == jumpBut) {
-          
-          bot.setAttribute("animation-mixer",this.data); 
-          var jumpTrans = function () {scene.removeEventListener('animation-loop',jumpTrans); bot.setAttribute("animation-mixer",prevData);console.log("scene ="+scene); console.log("fire")};  
-          console.log("prev data from jump button = "+prevData); 
-         setTimeout (function(){scene.addEventListener('animation-loop',jumpTrans);},500);     
+          console.log("Your clicked"); 
        
-       }
-          
        
       }); 
         
@@ -93,8 +75,8 @@
                   <a-entity 
                   raycaster="objects: .clickable"
                   cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  position="0 0 -0.3"
+                  geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.010"
                   material="color: green; shader: flat">
                   <a-animation begin="click" easing="ease-in" attribute="scale"
                               fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
@@ -107,17 +89,18 @@
         
         <a-entity id="opponent" gltf-model="./assets/opponentMan.gltf" scale="0.02 0.02 0.01" position="0 1.170606053560496 -0.4762045999540051">
           <!--Groin Circle-->
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="" position="0 10.155692288203888 1.5216280831896078"></a-circle>
+          <a-text visible=false value="Hello, World!" position="-1.2263805666946812 10.800753449417154 3.466624222873338" scale="2 2 2" text=""></a-text>
           <!--Eyes Circle-->
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="0.5717553051447145 20.343262250926585 1.2682090426037684"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.5" position="-0.46974076527666053 20.343262250926585 1.2682090426037684"></a-circle>            
           <!--Knees Circle-->
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="1.4501866444302334 6.234316376898374 2.803042930873528"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.75" position="-1.5039639852879358 6.234316376898374 2.803042930873528"></a-circle>
           <!--Throat Circle-->
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.43000000000000005" position="0 18.473394637184 1.5216280831896078"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.43000000000000005" position="0 18.473394637184 1.5216280831896078"></a-circle>
           <!--Nose Circle-->
-          <a-circle material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
+          <a-circle class="clickable" material="side:double;color:#EF2D5E;transparent:true;opacity:0.5" geometry="radius:0.35" position="0 19.634951161980858 1.5216280831896078"></a-circle>
         </a-entity> 
     </a-scene>
 

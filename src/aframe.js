@@ -68447,7 +68447,7 @@ var GRABBING_CLASS = 'a-grabbing';
 var PI_2 = Math.PI / 2;
 var radToDeg = THREE.Math.radToDeg;
 
-var checkHasPositionalTracking = utils.device.checkHasPositionalTracking;
+var checkHasPositionalTracking = false; //utils.device.checkHasPositionalTracking;
 
 /**
  * look-controls. Update entity pose, factoring mouse, touch, and WebVR API data.
@@ -68800,7 +68800,7 @@ module.exports.Component = registerComponent('look-controls', {
     var el = this.el;
     var position = el.getAttribute('position');
     var rotation = el.getAttribute('rotation');
-    var hasPositionalTracking = this.hasPositionalTracking !== undefined ? this.hasPositionalTracking : checkHasPositionalTracking();
+    var hasPositionalTracking = false; //this.hasPositionalTracking !== undefined ? this.hasPositionalTracking : checkHasPositionalTracking();
 
     if (this.savedPose || !hasPositionalTracking) { return; }
     this.savedPose = {
@@ -68815,7 +68815,7 @@ module.exports.Component = registerComponent('look-controls', {
   restoreCameraPose: function () {
     var el = this.el;
     var savedPose = this.savedPose;
-    var hasPositionalTracking = this.hasPositionalTracking !== undefined ? this.hasPositionalTracking : checkHasPositionalTracking();
+    var hasPositionalTracking = false; //this.hasPositionalTracking !== undefined ? this.hasPositionalTracking : checkHasPositionalTracking();
 
     if (!savedPose || !hasPositionalTracking) { return; }
 
@@ -80220,7 +80220,7 @@ module.exports.checkHeadsetConnected = checkHeadsetConnected;
 function checkHasPositionalTracking () {
   var vrDisplay = getVRDisplay();
   if (isMobile() || isGearVR()) { return false; }
-  return vrDisplay && vrDisplay.capabilities.hasPosition;
+  return false; //vrDisplay && vrDisplay.capabilities.hasPosition;
 }
 module.exports.checkHasPositionalTracking = checkHasPositionalTracking;
 

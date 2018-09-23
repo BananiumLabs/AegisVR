@@ -10,9 +10,20 @@
 
 html {
     color: #222;
+    background: black;
     font-size: 1em;
     line-height: 1.4;
+    overflow-x: hidden;
 }
+
+body {
+    margin: 0;
+}
+
+#white-wrapper {
+    background: white;
+}
+
 
 /*
  * Remove text-shadow in selection highlight:
@@ -90,12 +101,89 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+    #banner-img {
+        max-height: 60vh;
+        display: block;
+        margin: auto;
+    }
+
+    .banner-text {
+        font-family: "Teko";
+        font-size: 65px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .banner-description {
+        font-size: 40px;
+    }
+
+    .banner-arrow {
+        color: white;
+        font-size: 40px;
+        position: relative;
+    }
+
+    .banner {
+        color: white;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    #banner-wrapper {
+        opacity: 0;
+        animation: 1s ease-in-out 0s 1 banner-icon forwards;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        top: 0;
+
+    /* Background image - tinting adopted from https://css-tricks.com/tinted-images-multiple-backgrounds/*/
+    background:
+        url('../assets/background.jpg');
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+
+    
+}
+
+#down-arrow {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#down-arrow:hover {
+    transform: scale(1.25);
+}
+
+@keyframes banner-icon {
+    to {opacity: 1}
+}
+@-webkit-keyframes banner-icon {
+    to {opacity: 1}
+}
+@-moz-keyframes banner-icon {
+    to {opacity: 1}
+}
 
 
 
+#bginfo, #about {
+    color: black;
+    background: white;
+    padding-top: 5vh;
+}
 
-
-
+.center-text {
+    text-align: center;
+}
 
 
 

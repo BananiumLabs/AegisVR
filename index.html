@@ -11,6 +11,14 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Teko|Source+Sans+Pro" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -20,8 +28,60 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <div id="banner-wrapper">
+    <h1 class="banner banner-text">-WELCOME TO-</h1>
+    <img src="assets/aegis-banner.png" id="banner-img">
+    <h3 class="banner banner-text banner-description">The interactive VR self defense tutorial</h3>
+    <i class="banner fas fa-arrow-down banner-arrow" id="down-arrow"></i>
+  </div>
+
+  <div id="white-wrapper">
+
+    <div id="about">
+      <h1 class="banner banner-text black-text">About Aegis</h1>
+    </div>
+
+    <hr>
+
+      <div id="bginfo">
+        <h1 class="banner banner-text black-text">Begin a Lesson</h1>
+
+          <div class="card">
+            <div class="card-content">
+              <p class="center-text">Select a lesson below to view detailed information and get started!</p>
+            </div>
+            <div class="card-tabs">
+              <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a href="#test4">Intro to Targeting</a></li>
+                <li class="tab"><a class="active" href="#test5">Targeting Practice</a></li>
+                <li class="tab"><a href="#test6">Gun Defense</a></li>
+                <li class="tab"><a href="#test7">Knife Defense</a></li>
+              </ul>
+            </div>
+            <div class="card-content grey lighten-4">
+              <div id="test4">
+                <h3 class="center-text">Intro to Targeting</h3>
+                <img src="assets/background.png" class="card-img">
+                <p>Discover the basics of disabling attackers swiftly and effectively. We'll take you through an interactive </p>
+              </div>
+              <div id="test5">Test 2</div>
+              <div id="test6">Test 3</div>
+              <div id="test7">Test 3</div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
 
 </body>
+
+<footer>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      M.AutoInit();
+    </script>
+</footer>
 
 </html>
